@@ -33,7 +33,7 @@ add_custom_target(format-cpp
 add_custom_target(format-cpp-fix-comments DEPENDS format-cpp
     COMMAND find ${DIRS_TO_FORMAT_CPP} ${FIND_TO_FORMAT_CPP} |
         xargs -L 1 -P ${CPU_COUNT}
-        python3 ${PROJECT_SOURCE_DIR}/scripts/format.py --inplace --fix-comments --input)
+        python3 ${PROJECT_SOURCE_DIR}/dev/code_format_fixup.py --inplace --fix-comments --input)
 
 #
 # Use simple python script for fixing template brackets e.g. <<>
@@ -41,6 +41,6 @@ add_custom_target(format-cpp-fix-comments DEPENDS format-cpp
 add_custom_target(format-cpp-fix-template-operators DEPENDS format-cpp
     COMMAND find ${DIRS_TO_FORMAT_CPP} ${FIND_TO_FORMAT_CPP} |
         xargs -L 1 -P ${CPU_COUNT}
-        python3 ${PROJECT_SOURCE_DIR}/scripts/format.py --inplace --fix-template-operators --input)
+        python3 ${PROJECT_SOURCE_DIR}/dev/code_format_fixup.py --inplace --fix-template-operators --input)
 
 add_custom_target(format DEPENDS format-cpp-fix-comments format-cpp-fix-template-operators)
